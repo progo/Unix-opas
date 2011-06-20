@@ -1,14 +1,24 @@
+#######################
+# LaTeX
+#######################
+
+LATEXDIR = latex
 latex: fieldtest.pdf
 
-fieldtest.pdf: fieldtest.tex fieldtest.rst
-	pdflatex fieldtest.tex
-	pdflatex fieldtest.tex
+fieldtest.pdf: $(LATEXDIR)/fieldtest.tex
+	cd $(LATEXDIR);				\
+	pdflatex fieldtest.tex;		\
+	pdflatex fieldtest.tex;		\
+	mv fieldtest.pdf ..
 
-fieldtest.tex: fieldtest.rst
-	rst2latex.py fieldtest.rst > fieldtest.tex
+$(LATEXDIR)/fieldtest.tex: fieldtest.rst
+	rst2latex.py fieldtest.rst > $(LATEXDIR)/fieldtest.tex
 
 
 
+#######################
+# HTML
+#######################
 
 html: fieldtest.html
 
@@ -19,7 +29,9 @@ fieldtest.html: fieldtest.rst
 
 
 clean:
-	rm *log *aux *out *tex
+	rm $(LATEXDIR)/*
 
 reallyclean: clean
 	rm *pdf *html
+
+all: latex html
