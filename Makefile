@@ -1,4 +1,15 @@
 #######################
+# HTML
+#######################
+
+html: fieldtest.html
+
+fieldtest.html: fieldtest.rst
+	rst2html.py fieldtest.rst > fieldtest.html
+
+
+
+#######################
 # LaTeX
 #######################
 
@@ -13,17 +24,6 @@ fieldtest.pdf: $(LATEXDIR)/fieldtest.tex
 
 $(LATEXDIR)/fieldtest.tex: fieldtest.rst
 	rst2latex.py fieldtest.rst > $(LATEXDIR)/fieldtest.tex
-
-
-
-#######################
-# HTML
-#######################
-
-html: fieldtest.html
-
-fieldtest.html: fieldtest.rst
-	rst2html.py fieldtest.rst > fieldtest.html
 
 
 
