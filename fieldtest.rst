@@ -1,3 +1,7 @@
+
+.. include:: 00-settings.rst
+.. include:: 01-intro.rst
+
 -----------
 Kenttätesti
 -----------
@@ -73,7 +77,4 @@ Tuottaa luultavasti virheilmoituksen, mutta virheilmoituksen tekijä ei ole
             sivulta/githubista joku parempi, ehkä?
 :Ville:     Hah, se olikin vain nbsp siellä välissä. Se perkele pitäisi hävittää 
             jollain ilveellä.
-
-.. |for| replace:: for-looppi
-.. default-role:: literal
 

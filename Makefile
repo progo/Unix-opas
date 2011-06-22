@@ -1,11 +1,14 @@
+# the name of master document
+OUTPUT=fieldtest
+
 #######################
 # HTML
 #######################
 
-html: fieldtest.html
+html: $(OUTPUT).html
 
-fieldtest.html: fieldtest.rst
-	rst2html.py fieldtest.rst > fieldtest.html
+$(OUTPUT).html: *.rst
+	rst2html.py $(OUTPUT).rst > $(OUTPUT).html
 
 
 
@@ -14,24 +17,24 @@ fieldtest.html: fieldtest.rst
 #######################
 
 LATEXDIR = latex
-latex: fieldtest.pdf
+latex: $(OUTPUT).pdf
 
-fieldtest.pdf: $(LATEXDIR)/fieldtest.tex
+$(OUTPUT).pdf: $(LATEXDIR)/$(OUTPUT).tex
 	cd $(LATEXDIR);				\
-	pdflatex fieldtest.tex;		\
-	pdflatex fieldtest.tex;		\
-	mv fieldtest.pdf ..
+	pdflatex $(OUTPUT).tex;		\
+	pdflatex $(OUTPUT).tex;		\
+	mv $(OUTPUT).pdf ..
 
-$(LATEXDIR)/fieldtest.tex: fieldtest.rst
-	rst2latex.py fieldtest.rst > $(LATEXDIR)/fieldtest.tex
+$(LATEXDIR)/$(OUTPUT).tex: *.rst
+	rst2latex.py $(OUTPUT).rst > $(LATEXDIR)/$(OUTPUT).tex
 
 
 
 
 clean:
-	rm $(LATEXDIR)/*
+	rm -f $(LATEXDIR)/*
 
 reallyclean: clean
-	rm *pdf *html
+	rm -f *pdf *html
 
 all: latex html
