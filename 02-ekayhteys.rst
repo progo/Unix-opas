@@ -22,7 +22,7 @@ käsiksi Unix-shelliin. Shell, tuo komentorivien valtias. Shell on ohjelma,
 joka tavallisesti ottaa vastaan tekstiä käyttäjältä, ja suorittaa muita
 ohjelmia sitten annetun syötteen mukaan. Shell on ensimmäisten
 päätetietokoneiden myötä syntynyt *batch*-henkinen tapa vuorovaikuttaa
-tietokoneidne kanssa.
+tietokoneiden kanssa.
 
 :Ville:         Ööh, eli mikä toi bäts on?
 :Matias:        Annat syötteen koneelle kokonaisuudessaan, ja kone ajaa sen.
@@ -30,4 +30,12 @@ tietokoneidne kanssa.
                 vuorovaikutteisista ohjelmista kyse, jossa jokainen tehtävä
                 suunnitellaan yhdessä koneen ja käyttäjän kanssa, ja sitten
                 lopuksi kone suorittaa sen.
-:Ville:         Aha
+:Ville:         Aha. Eikö se ole vähän kankeeta sitten?
+:Matias:        Monissa hommissa ei tarvitse interaktiivisuutta. Niissä,
+                joissa tarvitaan, on sitten interaktiiviset valikot sun muut.
+
+Kaikilla käytännön tasoilla tarkasteltuna `ssh`-asiakasohjelmalla (esimerkiksi
+PuTTy tai Linuxien `ssh`) yhteyden ottaminen Unix-palvelimeen on samanlaista
+etäkäyttöä kuin vaikka Windowsien etätyöpöydän ajaminen. Onneksi puhtaasta
+tekstistä koostuvien konsoliohjelmien ajaminen on sujuvaa hitaammallakin
+nettiyhteydellä.

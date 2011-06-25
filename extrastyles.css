@@ -1,7 +1,10 @@
 /* extra styling that'll override the defaults */
+
+body {
+    margin-right: 30%;
+    margin-left: 10%;
+}
+
 .field-list p {
     margin-bottom: 0;
-}
-p {
-    margin-right: 5em;
 }
