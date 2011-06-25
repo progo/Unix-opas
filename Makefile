@@ -5,10 +5,13 @@ OUTPUT=fieldtest
 # HTML
 #######################
 
+DEFAULTSTYLE=/usr/share/doc/docutils-0.7/html/html4css1.css
+EXTRASTYLES=extrastyles.css
+
 html: $(OUTPUT).html
 
 $(OUTPUT).html: *.rst
-	rst2html.py $(OUTPUT).rst > $(OUTPUT).html
+	rst2html.py --stylesheet=$(DEFAULTSTYLE),$(EXTRASTYLES) $(OUTPUT).rst > $(OUTPUT).html
 
 
 
