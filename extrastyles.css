@@ -5,6 +5,22 @@ body {
     margin-left: 10%;
 }
 
+/* Headers to bit more human */
+h1.title {
+    font-size: 4em;
+}
+h1 {
+    font-size: 1.5em;
+}
+h2 {
+    font-size: 1.25em;
+    color: gray;
+}
+
 .field-list p {
     margin-bottom: 0;
+}
+
+dt {
+    font-weight: bold;
 }

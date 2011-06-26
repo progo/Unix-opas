@@ -41,3 +41,6 @@ reallyclean: clean
 	rm -f *pdf *html
 
 all: latex html
+
+wordcount:
+	@wc -w *rst|grep total

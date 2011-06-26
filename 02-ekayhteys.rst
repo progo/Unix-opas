@@ -1,5 +1,5 @@
 Ensimmäinen yhteys
-------------------
+==================
 
 Ensimmäistä yhteyttään ei yleensä jännitä samalla tavalla kuin toista tai
 kolmatta yhteyttä.  Ensimmäistä yhteyttä ottaessaan sitä lukee hyvin mielin
@@ -24,7 +24,7 @@ ohjelmia sitten annetun syötteen mukaan. Shell on ensimmäisten
 päätetietokoneiden myötä syntynyt *batch*-henkinen tapa vuorovaikuttaa
 tietokoneiden kanssa.
 
-:Ville:         Ööh, eli mikä toi bäts on?
+:Ville:         Ööh, eli mikä toi *bäts* on?
 :Matias:        Annat syötteen koneelle kokonaisuudessaan, ja kone ajaa sen.
                 Sen jälkeen voit komentaa lisää. Nykyisin on enemmän
                 vuorovaikutteisista ohjelmista kyse, jossa jokainen tehtävä
@@ -35,7 +35,61 @@ tietokoneiden kanssa.
                 joissa tarvitaan, on sitten interaktiiviset valikot sun muut.
 
 Kaikilla käytännön tasoilla tarkasteltuna `ssh`-asiakasohjelmalla (esimerkiksi
-PuTTy tai Linuxien `ssh`) yhteyden ottaminen Unix-palvelimeen on samanlaista
-etäkäyttöä kuin vaikka Windowsien etätyöpöydän ajaminen. Onneksi puhtaasta
-tekstistä koostuvien konsoliohjelmien ajaminen on sujuvaa hitaammallakin
-nettiyhteydellä.
+PuTTy tai Linuxien komentoriviltä ajettava `ssh`) yhteyden ottaminen
+Unix-palvelimeen on samanlaista etäkäyttöä kuin vaikka Windowsien etätyöpöydän
+ajaminen. Onneksi puhtaasta tekstistä koostuvien konsoliohjelmien ajaminen on
+sujuvaa hitaammallakin nettiyhteydellä.
+
+Hei Unix?
+---------
+
+Mainittakoon, että puhumme tässä oppaassa Unixeista, vaikka oikeasti Linux ei
+edes ole tarkalleen ottaen Unix. Siis yksinkertaistetusti *Linux on yksi
+Unix-variantti*. Koska valtaosa, ellei kaikki, mitä tässä oppaassa opimme,
+toimii Linuxien lisäksi Unixeissa, niin puhun yleisemmällä tasolla
+Unix-käytöstä.
+
+:Ville:         *I'm in!*
+:Matias:        Hieno homma.
+:Ville:         Mitä tässä voi nyt sitten tehdä? Kirjoittaa tekstiä ja
+                odotella kun kone vastaa?
+:Matias:        Ohjelma, jota siinä "ajat" tällä hetkellä, on se kuuluisa
+                shelli sitten. Todennäköisimmin shell nimeltä `bash`.
+                Joskus kirjallisuudessa puhutaan kuoriohjelmista, mutta on se
+                aika toivoton suomennos.
+
+
+Shell-ohjelmia on monia, joista `bash` on ylivoimaisesti suosituin tänä
+päivänä. Joskus saattaa nähdä myös vanhempaa `csh`-ohjelmaa käytössä.
+Peruskäytössä jokainen toimii yhtä hyvin, ja erot eri shellien välillä tulevat
+ilmi vasta monimutkaisempia skriptejä kirjoitellessa. Nykyisin kaksi
+suositeltavinta shelliä kaikkeen käyttöön ovat `bash` ja `zsh`, joita
+ylläpidetään ahkerasti. Tässä vaiheessa ei tarvitse tietää muuta kuin se, että
+shell-ohjelma on oma sovelluksensa, irti käyttöjärjestelmän ytimestä. Tiedät
+sitten sanoa, että se on `bash` joka kenkkuilee, eikä linux.
+
+
+:Matias:        Maistelepa komentorivin taikaa.
+                Komennapa vaikka::
+                
+                    echo Hei Unix!
+
+:Ville:         Kyllä minä nyt `echo`:n tiedän. Ei sillä ole kyllä paljoa
+                käyttöä. Tuossahan minä näen sen tekstin ilman enterin
+                painamistakin!
+:Matias:        Echolla on käyttönsä esimerkiksi skriptatessa.
+:Ville:         Pitääkös minun osata skriptausta? PHP ei ole vahvin lajini...
+:Matias:        Kun osaat luovia komentorivillä, osaat samalla skriptata.
+                Voithan ottaa tästä vähän vaativamman esimerkin::
+
+                    echo Hei $USER
+
+:Ville:         Se näyttää keksivän nimeni jostain. On se epeli tuo `echo`.
+:Matias:        Paitsi että `echo` ei ole se fiksu osapuoli. Shellisi tekee
+                muunnoksen kutsuvaiheessa, ja echo näkee vain tekstin "`Hei
+                ville`" tulostettavaksi.
+:Ville:         Vai silleen.
+:Matias:        Katsos, siten ei jokaisen pikkuohjelman tarvitse itse
+                ratkaista tuota `$USER`:in merkitystä, vaan riittää että yksi
+                ohjelma, shell, hoitaa sen.
+
