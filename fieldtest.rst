@@ -14,6 +14,9 @@ Thinking in Text
 .. the chapters or smaller topics
 .. include:: 01-intro.rst
 .. include:: 02-ekayhteys.rst
+.. argumenteistakin ja merkintätavoista pitäisi puhua
+.. include:: 03-hakemistot.rst
+.. include:: 03-pikkuohjelmia.rst
 .. include:: putket.rst
 .. include:: nano.rst
 .. include:: vi.rst
