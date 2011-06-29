@@ -22,6 +22,9 @@ yleisen keskeytyskomennon `<C-c>` omiin tarkoituksiinsa, joten sitä painamalla
 ei pääsekään ulos editorista. Senkin takia on nyt hyvä kertoa minimaalinen
 katsaus tähän ohjelmaan.
 
+Keskeiset komennot
+------------------
+
 :Matias:        Annahan kun minä listaan teille joitain peruskomentoja vi:stä.
 
 +---------+------------------------+------+---------------------+
@@ -63,6 +66,12 @@ lisäystila (insert mode)
     kaikkea liikkumista varten. Se tapahtuu yleensä Esciä painamalla, mutta
     ehkä helpompaa on käyttää `<C-c>`:tä (Ctrl-C)
 
+Tilakaavion muodossa näin:
+
+.. image:: pics/vi-modes.png
+
+--------------  
+
 :Hemmo-Joachim: Mä taidan jatkaa ton `nano`:n kanssa. Ja mikä ihmeen juttu toi
                 `hjkl` on -- eikö vanhoissa koneissa ollut nuolinäppäimiä?
 :Matias:        Kyllä niissä oli, mutta eräät terminaalit lähettivät niistä
@@ -73,8 +82,8 @@ lisäystila (insert mode)
                 nuolta tarjolla.
 
                 Teidän kannattaa vain toivoa, että niissä Unix-ympäristöissä,
-                joissa liikutte, tulee nuolinäppäimet luetuksi. Jos ei, niin
-                on parempi alkaa totutella noihin hjkl:ään.
+                joissa liikutte, tulee nuolinäppäimet luetuksi oikein. Jos ei,
+                niin on parempi alkaa totutella noihin `hjkl`:ään.
 :Ville:         Taitaa toi aiemmin käsitelty `nano` olla ihan sopiva meikälle.
 
 Vim

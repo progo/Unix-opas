@@ -15,6 +15,7 @@ Thinking in Text
 .. include:: 01-intro.rst
 .. include:: 02-ekayhteys.rst
 .. include:: putket.rst
+.. include:: nano.rst
 .. include:: vi.rst
 
 To be continued
