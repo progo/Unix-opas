@@ -62,6 +62,8 @@ Toivottavasti pysytte kärryillä.
 +-------------+-------------------------------------------------------+
 | `wc`        | Laskee merkkejä/sanoja/rivejä                         |
 +-------------+-------------------------------------------------------+
+| `sort`      | Lajittelee tiedostoa                                  |
++-------------+-------------------------------------------------------+
 | `head`      | Näytä ensimmäiset rivit                               |
 +-------------+-------------------------------------------------------+
 | `tail`      | Näytä viimeiset rivit                                 |
@@ -153,6 +155,12 @@ Näin helppoa se on::
       1 bar.txt
       6 total
 
+---------
+
+`sort`
+......
+
+TODO
 
 ---------
 
@@ -306,10 +314,135 @@ Tiedostoon pitäisi ilmestyä sekunnin välein yksi uusi rivi, jossa on
 näppäinyhdistelmä `<C-c>` sekä tailille että toistaiseksi mystiselle
 `while`-kokonaisuudelle saa ohjelmat hiljenemään.
 
+:Matias:        Itse käyttelen tätä toimintoa omien javaohjelmien
+                debuggauksessa. Ja myöspä unixien omat järjestelmälogit on
+                helppo panna taustalle rullaamaan tämän seurannan avulla!
+:Ville:         Aika päheetä.
+
 ---------
 
 `less`
 ------
 
-Tämä on tärkeämpi 
+Esitetyt ohjelmat ovat tähän mennessä kaikki olleet yhtälailla ihmisen kuin
+koneen käyttöä varten. Nyt esitetään tekstitiedostoja lukeva `less`, jonka
+toiminnallisuus on puhtaasti ihmisen käyttöä varten. 
 
+On nyt mainittava, että `less` ei kuulu vakiokalustoon. Jos käy huono arpa
+kohdalle, lessiä ei ole asennettu Unixissasi. Joskus pagerina on käytettävä
+vanhempaa ohjelmaa nimeltä `more` (DOS-käyttäjät muistanevat samannimisen),
+mutta se on paljon rajoittuneempi. Sanontakin sen sanoo: *less is more*. 
+
+:Matias:        No niin. Pitkiä tiedostoja -- vaikkapa irc-logeja -- on tylsä
+                lukea `cat`:in tai `grep`:in avulla.
+:Ville:         Sanoppa muuta.
+:Hemmo-Joachim: Eikö se `irssi` ole just tuota varten?
+:Matias:        No Hemmo, irssi säilyttää vain sen ja sen verran logia.
+                Vanhoja muistellessasi pitää yleensä turvautua logeihin, jos
+                niitä olet nauhoitellut.
+:Hemmo-Joachim: No niinhän se on. Olen joskus kokeillut `grep`:illä hakea
+                jotain juttua logista ja ei siitä ole tullut mitään.
+:Matias:        `less` helpottaa siinä hakemisessa.
+:Ville:         Eli tuo esittelemäsi `grep` onkin ihan turha, jos `less`:llä
+                voi hakea helpommin ja paremmin?
+:Matias:        Ei niinkään. Näet kyllä, että näillä tehdään erityyppisiä
+                hakemisia.
+
+Peruskäyttö::
+
+    less [FILE]...
+
+Ja nyt `less` avaa tiedostosi koko ruudulle.  Voit selata tiedostoa
+nuolinäppäimin tai vaikka käyttää `<Page Up/Down>`:ia. Selaimesta tutulla
+tavalla voit vierittää alaspäin välilyönnistä. Voit palata ylöspäin: temppu,
+jota vanha `more` ei osannut. Mutta jos ajat lessiä komentoriviltä jonkin
+terminaalisovelluksen läpi, niin terminaalisi vierityspalkit tuskin toimivat
+kuten haluat. Less ei ole sellainen ns. *batch*-sovellus kuten puhuimme
+alussa. Se on interaktiivinen kokoruudun ohjelma, jotka yleistyivät vasta
+80-luvulla.
+
+:Ville:         Hommasin jonkun tiedoston tähän ja `less` nyt tässä auki. Mitä
+                tässä voi tehdä, muutakin kuin kelata ylös- ja alaspäin ja
+                lukea?
+:Matias:        Voit hakea tiedostostasi hakusanoilla, voit ladata uusia
+                tiedostoja ja vaihdella niiden välillä; voit hyppiä
+                tiedostosta komentoriville ja sitten palata takaisin. Voit
+                asettaa kirjanmerkkejä kohtiin ja palata niihin yhdellä
+                näppäinyhdistelmällä myöhemmin... `less` osaa kaikenlaista.
+
+                Mutta me käymme vain pienen osan kaikesta tästä, koska sillä
+                pärjää hyvin.
+
+Seuraavassa taulukossa on listaus `less`:in paljon käytettyjä komentoja.
+
++--------------------+-----------------------------+
+| Näppäin            | Tekee                       |
++====================+=============================+
+| Ylä- ja alanuoli   | selaa tiedostoa ylös/alas   |
++--------------------+-----------------------------+
+| `h`                | lessin ohjetiedosto         |
++--------------------+-----------------------------+
+| `q`                | sulje ohje tai sulje `less` |
++--------------------+-----------------------------+
+| `j`, `k`           | rivi alas / rivi ylös       |
++--------------------+-----------------------------+
+| PgUp/Dw            | Sivu kerrallaan ylös/alas   |
++--------------------+-----------------------------+
+| `<C-f>` ja `<C-b>` | Sivu alas/ylös              |
++--------------------+-----------------------------+
+| `/PAT<CR>`         | Haku tiedostosta            |
++--------------------+-----------------------------+
+| `n`                | Seuraava osuma              |
++--------------------+-----------------------------+
+| `N`                | Edellinen osuma             |
++--------------------+-----------------------------+
+
+:Matias:        Ja tarkennettakoon se, että `<C-f>` tarkoittaa control+f:ää.
+                Mikä puolestaan tarkoittaa, että kontrol-äffällä ei tehdä
+                hakua kuten Windows-maailmassa tehdään.
+
+                Toinen tarkennus on, että `<CR>` tarkoittaa enterin
+                painallusta.
+:Ville:         Miksi kehittäjät eivät ole voineet tehdä samalla tavalla
+                toimivaa systeemiä. On taas pitänyt taistella Microsoftia
+                vastaan! :F
+:Matias:        Otahan huomioon, että nämä konventiot ovat rutkasti vanhempia
+                kuin Windows.
+:Hemmo-Joachim: Tuossa on joitain päällekkäisyyksiä. Onko niissä eroja?
+:Matias:        Ei ole. Sisällytin pari kohtaa, jotka ovat keskenään samoja.
+                Pistin ne mukaan, jos joukossamme on joku `vi`-käyttäjä.
+                Joskus on ihan mukava kirjoitella ja hypätä lessiin ilman,
+                että pitää kättä siirtää nuolinäppäimille.
+:Hemmo-Joachim: Ja mitenköhän se sitten onnistuu?
+:Ville:         Justhan sä luit tuon taulukon. Siinä näkyy niitä näppäimiä.
+
+Esimerkissämme nyt voisi olla pitkä, 170-rivinen `Stooges.txt`-tiedosto, josta
+haluamme haeskella muuten vain vaikkapa hevosaiheisia jaksoja.
+
+::
+
+    $ less Stooges.txt
+    /Horse<CR>
+    n
+    n
+    q
+
+Tämä olisi esimerkkitilanne, jossa haetaan hakusanalla "Horse" ja ilmeisesti
+tehdäänkin löytöjä. Kahdesti on painettu `n`-näppiä, eli on haettu edelleen
+uusia Horse-esiintymiä tiedostosta. Sitten on lopeteltu.
+
+:Matias:        Enpä jaksa enempää esitellä. `less` on paljon käytetty
+                ohjelma, ja se on riittävän yksinkertainen. Jos on ollut
+                tarvetta millekään isommalle niin olen vaihtanut suosiolla
+                editorin puolelle.
+:Hemmo-Joachim: Ja hei, siihen on muuten `less`:in puolelta oma komento.
+:Matias:        No katsos vain. Olet ollut tarkkana. Tiedostoa selattaessa
+                näppäin `v` aktivoi kyseisen tiedoston vapaavalintaisessa
+                editorissa. Mutta sen täytyy olla asetettuna tietyssä
+                muodossa. Palaamme editoreihin tuotapikaa!
+
+                Tämä on hyvä yhdistelmä, `less` ja tuo komento `v`. Nopeasti
+                käynnistyvällä lessillä helposti hakee oikean tiedoston, ja
+                sitten voi editoida sitä yhden näppäinpainalluksen takaa.
+
+Jees. Meikä kuunteleekin Kraftwerkin levyn vielä loppuun ja sitten suihkuun.
