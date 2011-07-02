@@ -157,13 +157,6 @@ Näin helppoa se on::
 
 ---------
 
-`sort`
-......
-
-TODO
-
----------
-
 `grep`
 ......
 
@@ -195,15 +188,15 @@ suosikkielokuvien listaukset::
     $ cat Stooges.txt
     Vuosi   Jakso                   Kuka?
     --------------------------------------------
-    1935    Uncivil Warriors        Curly
-    1940    From Nurse To Worse     Curly
-    1942    Three Smart Saps        Curly
-    1946    Monkey Businessmen      Curly
-    1947    All Gummed Up           Shemp
-    1948    Hot Scots               Shemp
-    1950    Punchy Cowpunchers      Shemp
     1950    Studio Stoops           Shemp
+    1940    From Nurse To Worse     Curly
     1958    Quiz Whiz               Joe
+    1935    Uncivil Warriors        Curly
+    1946    Monkey Businessmen      Curly
+    1950    Punchy Cowpunchers      Shemp
+    1948    Hot Scots               Shemp
+    1947    All Gummed Up           Shemp
+    1942    Three Smart Saps        Curly
     $
 
 Jos tämä olisi kokonainen listaus *Three Stooges* -elokuvia, niin tämä olisi
@@ -214,10 +207,10 @@ Nyt jos haluaisimme tarkastella kaikkia Shempin tekemiä jaksoja, niin
 `grep`:iä käyttämällä asia on jo hoidossa::
 
     $ grep Shemp Stooges.txt
-    1947    All Gummed Up           Shemp
-    1948    Hot Scots               Shemp
-    1950    Punchy Cowpunchers      Shemp
     1950    Studio Stoops           Shemp
+    1950    Punchy Cowpunchers      Shemp
+    1948    Hot Scots               Shemp
+    1947    All Gummed Up           Shemp
 
 Mitään ei ole poistettu: grep vain näyttää osuman saaneet rivit tiedostosta,
 eikä muuta. Vastaavalla tavalla voimme hakea vaikka minkälaista. Hakusana ei
@@ -226,9 +219,9 @@ keskeltä toista sanaa, niin rivi tulostetaan. Tästä on erityisesti etua, jos
 vähän haittaakin::
 
     $ grep 195 Stooges.txt
-    1950    Punchy Cowpunchers      Shemp
     1950    Studio Stoops           Shemp
     1958    Quiz Whiz               Joe
+    1950    Punchy Cowpunchers      Shemp
 
 Näin saimme kaikki 1950-luvulla esitetyt jaksot listatuksi, kun olimme vähän
 ovelia ja tiesimme tiedoston rakenteesta etukäteen. Säännöllisten lausekkeiden
@@ -253,6 +246,77 @@ käsitellä kaikkea.  Siihen palaillaan säännöllisissä lausekkeissa sitten.
 Katsellaan vielä pari pikkuohjelmaa tiedostojen käsittelyyn, ja sitten yksi
 isompi, jolla on paljon käyttöä isompien tiedostojen luennassa.
 
+
+---------
+
+`sort`
+......
+
+
+:Matias:        Lajittelu on melko tyypillinen ongelma, ja helppokin
+                sellainen. Ohjelma nimeltä `sort` hanskaa tiedostojen rivien
+                lajittelun.
+:Hemmo-Joachim: No annahan esimerkki.
+:Matias:        Käyttäkäämme Stooges.txt -tiedostoa taas apunamme. Voisimme
+                esimerkiksi ajaa sen helposti järjestykseen vuosiluvun mukaan.
+                Nyt siinä on toki mukana se otsikko ja viiva, ja se vähän
+                sotkee asiaamme.
+
+::
+
+    $ sort Stooges.txt
+    --------------------------------------------
+    1935    Uncivil Warriors        Curly
+    1940    From Nurse To Worse     Curly
+    1942    Three Smart Saps        Curly
+    1946    Monkey Businessmen      Curly
+    1947    All Gummed Up           Shemp
+    1948    Hot Scots               Shemp
+    1950    Punchy Cowpunchers      Shemp
+    1950    Studio Stoops           Shemp
+    1958    Quiz Whiz               Joe
+    Vuosi   Jakso                   Kuka?
+
+:Ville:         ... eli sortista ei ole mihinkään käytännölliseen tuon
+                ongelman takia?
+:Matias:        Ei nyt ihan niinkään -- kuten näette, rivit ovat kuitenkin
+                järjestyksessä. Tämän asian voi korjata "näppärästi", mutta
+                siihen joudumme palaamaan vasta myöhemmin!
+:Hemmo-Joachim: Eihän tuo ole paha rasti korjata itte takaisin tota.
+:Matias:        Lisättäköön, että `sort` on puhtaille tiedostoille, kuten
+                juuri teimme, parhaimmillaan ilman otsikoita. Siis ilman
+                muotoiluja. Muotoiltua tekstiä lajiteltaessa kannattaa
+                hyödyntää kehittynyttä editoria apunaan.
+
+                Ennen kuin tämä lässähtää huonoon demoon lopullisesti, niin
+                maustetaan asiaa sillä faktalla, että tämmöistä
+                taulukkomuotoista tekstiä `sort` osaa lajitella myös
+                sarakkeittain!
+:Hemmo-Joachim: Elä?
+
+::
+
+    $  sort -k 2 Stooges.txt
+    --------------------------------------------
+    1947    All Gummed Up           Shemp
+    1940    From Nurse To Worse     Curly
+    1948    Hot Scots               Shemp
+    Vuosi   Jakso                   Kuka?
+    1946    Monkey Businessmen      Curly
+    1950    Punchy Cowpunchers      Shemp
+    1958    Quiz Whiz               Joe
+    1950    Studio Stoops           Shemp
+    1942    Three Smart Saps        Curly
+    1935    Uncivil Warriors        Curly
+    $
+
+Ja mitä näettekään?  Nyt tiedosto on lajiteltu toisen sarakkeen, eli jakson
+nimen mukaan. Sitä varten on tuo optio `-k`, jolle annetaan "kentän" numero.
+Tässä `sort` osaa haistella asian oikein, koska meillä on simppeliä dataa.
+Oletuksena kenttä erottuu välilyönnistä, jolloin esimerkiksi "All Gummed Up"
+on kolme erillistä kentää sortin silmissä. Kaikki lajittuu oikein, koska muuta
+ei tarvitakaan kuin lajitella toisesta sanasta, eli jakson nimestä alkaen
+rivin loppuun saakka.
 
 ---------
 

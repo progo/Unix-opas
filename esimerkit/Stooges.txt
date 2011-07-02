@@ -1,11 +1,11 @@
 Vuosi   Jakso                   Kuka?
 --------------------------------------------
-1935    Uncivil Warriors        Curly
-1940    From Nurse To Worse     Curly
-1942    Three Smart Saps        Curly
-1946    Monkey Businessmen      Curly
-1947    All Gummed Up           Shemp
-1948    Hot Scots               Shemp
-1950    Punchy Cowpunchers      Shemp
 1950    Studio Stoops           Shemp
+1940    From Nurse To Worse     Curly
 1958    Quiz Whiz               Joe
+1935    Uncivil Warriors        Curly
+1946    Monkey Businessmen      Curly
+1950    Punchy Cowpunchers      Shemp
+1948    Hot Scots               Shemp
+1947    All Gummed Up           Shemp
+1942    Three Smart Saps        Curly

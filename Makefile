@@ -20,6 +20,7 @@ $(OUTPUT).html: *.rst
 #######################
 
 LATEXDIR = latex
+LATOPTIONS = --stylesheet-path=extrastyles.tex
 latex: $(OUTPUT).pdf
 
 $(OUTPUT).pdf: $(LATEXDIR)/$(OUTPUT).tex
@@ -29,7 +30,7 @@ $(OUTPUT).pdf: $(LATEXDIR)/$(OUTPUT).tex
 	mv $(OUTPUT).pdf ..
 
 $(LATEXDIR)/$(OUTPUT).tex: *.rst
-	rst2latex.py $(OUTPUT).rst > $(LATEXDIR)/$(OUTPUT).tex
+	rst2latex.py --stylesheet-path=../extrastyles.tex $(OUTPUT).rst > $(LATEXDIR)/$(OUTPUT).tex
 
 
 

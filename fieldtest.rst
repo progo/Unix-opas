@@ -17,6 +17,7 @@ Thinking in Text
 .. argumenteistakin ja merkintätavoista pitäisi puhua
 .. include:: 03-hakemistot.rst
 .. include:: 03-pikkuohjelmia.rst
+.. man 
 .. include:: putket.rst
 .. include:: nano.rst
 .. include:: vi.rst
