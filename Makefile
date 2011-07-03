@@ -45,3 +45,6 @@ all: latex html
 
 wordcount:
 	@wc -w *rst|grep total
+
+todos:
+	@grep --color=auto TODO *rst

@@ -14,11 +14,13 @@ Thinking in Text
 .. the chapters or smaller topics
 .. include:: 01-intro.rst
 .. include:: 02-ekayhteys.rst
-.. argumenteistakin ja merkintätavoista pitäisi puhua
+.. TODO argumenteistakin ja merkintätavoista pitäisi puhua, sekä
+    näppäinyhdistelmien merkintätavoista
 .. include:: 03-hakemistot.rst
 .. include:: 03-pikkuohjelmia.rst
 .. man 
 .. include:: putket.rst
+.. include:: editor-intro.rst
 .. include:: nano.rst
 .. include:: vi.rst
 
@@ -30,5 +32,4 @@ Käsittelemättä on ainakin seuraavia ideoita:
 - screen
 - make
 - vim
-- nano
 - emacs

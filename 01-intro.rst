@@ -1,6 +1,7 @@
 Esittely
 ========
 
+.. TODO kuvaukset voisi katsella johonkin suuntaan.
 
 :Ville:         Päähenkilömme, joka on juuri saanut shell-tunnuksen, eikä
                 oikein tiedä, mitä kaikkea sillä tehdä.
