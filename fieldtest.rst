@@ -2,7 +2,7 @@ Thinking in Text
 ~~~~~~~~~~~~~~~~
 
 .. contents:: Sisältö
-    :depth: 2
+    :depth: 3
     :backlinks: none
 
 .. settings here
@@ -14,8 +14,7 @@ Thinking in Text
 .. the chapters or smaller topics
 .. include:: 01-intro.rst
 .. include:: 02-ekayhteys.rst
-.. TODO argumenteistakin ja merkintätavoista pitäisi puhua, sekä
-    näppäinyhdistelmien merkintätavoista
+.. include:: merkinnat.rst
 .. include:: 03-hakemistot.rst
 .. include:: 03-pikkuohjelmia.rst
 .. man 
