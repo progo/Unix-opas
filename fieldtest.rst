@@ -17,7 +17,7 @@ Thinking in Text
 .. include:: merkinnat.rst
 .. include:: 03-hakemistot.rst
 .. include:: 03-pikkuohjelmia.rst
-.. man 
+.. include:: man.rst
 .. include:: putket.rst
 .. include:: editor-intro.rst
 .. include:: nano.rst
