@@ -203,7 +203,8 @@ Kuten Windowsissa
 :Ville:         Kyllä se joo. Jos käyttäjä tietää jo niitä nimiä, niin mitä
                 siitä kostuu. No tietysti jos haluaa kokoja katsella...
 :Matias:        Erityisesti jos annamme shellin auttaa vähän. Shell osaa hakea
-                tiedostonimiä ns. *wildcardien* avulla. Idea on toivottavasti
+                tiedostonimiä ns. *wildcardien* tai suomalaisittain
+                jokerimerkkien avulla. Idea on toivottavasti
                 selvä Dos-ajoilta.  Ja jos olettaisimme, että tiedostoja on
                 tuhatkaupalla. Kaikkea ei pysty käsittämään pieni ihminen
                 kerralla.
@@ -237,15 +238,185 @@ Kuten Windowsissa
                     $ ls k*nen
                     karvinen
 
+:Ville:         Dos-ajoilta muistan, että tähti (eli asteriski, eli `*`)
+                vastaa yhtä tai useampaa merkkiä, ja kysymysmerkki `?` yhtä
+                merkkiä.
+:Matias:        Kyllä ne vähän samaa ovat, mutta on pieni ero. Tähti vastaa
+                myös nollaa merkkiä, mikä voi kuulostaa ihmeelliseltä::
 
-Olisikohan tässä tarpeeksi aineksia tiedostoihin ja hakemistoihin.
+                    $ ls karvinen*
+                    karvinen
+
+Summariikkina:
+
++--------------+------------------------+
+| Jokerimerkki | Vastaa                 |
++==============+========================+
+| `*`          | 0 tai enemmän merkkejä |
++--------------+------------------------+
+| `?`          | 1 merkkiä              |
++--------------+------------------------+
+
+.. Olisikohan tässä tarpeeksi aineksia tiedostoihin ja hakemistoihin.
 
 Kotihakemisto
 -------------
 
+:Matias:        Sitten vähän lisää hakemistoista, nimittäin kotihakemiston
+                käsite. Nykyisin on tämä helpompaa selittää, kun koti-Windowsit
+                ovat päässeet samalle tasolle. Samalla tavalla kuin teillä on
+                Windowseissa `C:\\Users\\` -polun takana omat tavaranne,
+                joihin muut eivät pääse käsiksi, niin Unixeissa on vastaava
+                hakemisto `/home/`.
+:Ville:         En nyt käsitä...
+:Hemmo-Joachim: Jokaisella on se oma *"Omat tiedostot"* -hakemisto, johon ei
+                yleensä pääse katselemaan muut kuin sen hakemiston omistaja
+                itse.
+:Ville:         Niin.
+:Matias:        Ja nyt Unixeissa on myös jokaisella oma kotisoppi, yleensä
+                sijaitsee hakemistossa `/home/<käyttäjä>/`.
+
+                Esimerkiksi minulla on systeemeissäni `/home/matias/`. Se on
+                kokonaan minun aluettani, johon säilötään omat asetustiedostot
+                ja datat.
+:Ville:         Mistä sen tietää, jos on semmoinen hakemisto?
+:Matias:        Sen osaa aavistaa. Jos ei ole, niin yleensä mikään ei toimi
+                kunnolla.
+:Matias:        Ja nyt shellissä pyöriessäsi kotihakemisto on syystäkin varsin
+                merkityksellinen paikka. Isoissa koneissa et yksinkertaisesti
+                pääse tekemään muualla mitään kuin omassa hakemistossasi.
+
+                Siksi sille on annettu näppärä lyhenne kaikissa shelleissä:
+                `~`, eli *tilde* tai matomerkki.
+:Ville:         Miten sitä lyhennettä pääsee käyttämään?
+:Hemmo-Joachim: No kaikkialla, missä voi antaa hakemistopolkua, voi käyttää
+                tätä tildeä merkkaamaan omaa kotihakemistoa::
+
+                    $ pwd
+                    /home/hemmo/aybabtu
+                    $ cd ~
+                    $ pwd
+                    /home/hemmo
+
+:Matias:        Näin voi tehdä. Huomautettakoon, että pelkkä `cd` tekee saman
+                mitä `cd ~`. Tilden käyttö on hyvin oleellinen osa kotona
+                luoviessaan. Tämmöinen käytös on hyvin yleistä, kun haluan
+                vaihtaa nopeasti eri hakemistoista toisiin::
+
+                    $ pwd
+                    /home/matias/autot/fiat
+                    $ cd ~/kissat
+                    $ pwd
+                    /home/matias/kissat
+
+                Se vain on nopeaa ja selkeätä käyttää tildeä ikään kuin
+                päähakemistona, josta koti alkaa.
+
 Oikeuksista
 -----------
+
+Ja pari sanaa oikeuksista. Kotihakemistosta keskusteltaessamme mainitsimme,
+että muut eivät välttämättä pääse katselemaan saati kirjoittamaan omia
+tiedostojamme uusiksi.  Unixin tiedosto-oikeusjärjestelmä on vanha ja hyvin
+simppeli, mikä tekee siitä ainakin helposti opittavan, jos ei kovinkaan
+nykyaikaisen.
+
+Tämä malli on kuitenkin äärimmäisen helppo ymmärtää:
+
+- Kukin käyttäjä voi kuulua eri ryhmiin.
+- Tiedostolla tai hakemistolla on aina yksi omistaja ja yksi ryhmä, johon se
+  kuuluu.
+- Tiedostolla tai hakemistolla on kolme erilaista asetusta kullekin
+  käyttäjäkunnalle: omistaja, ryhmä (tiedoston ryhmä), muut (kuin omistaja tai
+  kyseinen ryhmä).
+
+.. TODO tämä ehkä pitäisi siirtää jonnekin muualle pelottamasta perusjuttuja
+
+Tarkastellaan aiemmin nähtyä esimerkkiä. Tässä on `ls -l` -syötettä
+tiedostosta `karvinen`::
+
+    -rw-r--r-- 1 matias matias 2354 Jul 15 17:18 karvinen
+      3.           1.     2.
+
+Numeroidut kohdat:
+
+1. Tiedoston omistaja, `matias`.
+2. Tiedoston ryhmä, myös nimetty `matias`. Sattumalta tässä systeemissä kukin
+   käyttäjä saa myös oman nimikkoryhmänsä käyttäjäluonnin yhteydessä. Yleinen
+   vaihtoehto on myös `users`, tai muuta.
+3. Tässä näkyvät tiedoston oikeudet. Tämä kymmenmerkkinen rimpsu on helposti
+   luettavassa muodossa oleva katsaus oikeuksiin. Jos oikeutta ei ole, niin
+   annetaan viiva. Muuten siinä näkyy lyhenne. Käydään nämä läpi:
+
+   #. Ei oikeastaan oikeusmerkki, vaan ilmaisee, onko kyseessä tiedosto (`-`)
+      vai hakemisto (`d`). Voi olla joitain muitakin merkkejä, jos kyseessä on
+      vielä erikoisempi tiedosto.
+   #. Omistajan lukuoikeus (`r`: read)
+   #. Omistajan kirjoitusoikeus (`w`: write)
+   #. Omistajan suoritusoikeus (`x`: execute).
+   #. Ryhmän lukuoikeus
+   #. Ryhmän kirjoitusoikeus
+   #. Ryhmän suoritusoikeus 
+   #. Muiden lukuoikeus
+   #. Muiden kirjoitusoikeus
+   #. Muiden suoritusoikeus 
+
+Lukuoikeus on oltava, jotta tiedoston sisällön näkee. Kirjoitusoikeus on aika
+ilmeinen. Suoritusoikeus tarkoittaa sitä, että tiedoston voi ajaa kuin
+ohjelman. Hakemiston tapauksessa tarkoittaa, että sisään voi mennä.
+
+Tuota kymmenen merkin sarjaa on helppoa lukea kolmen palasissa, ja unohtaa
+ensimmäinen merkki. Jos tiedoston ryhmäoikeuksiin on merkitty `rw-`, niin
+kaikki ne käyttäjät, jotka kuuluvat samaan ryhmään kuin tiedosto, voivat
+kirjoittaa ja lukea näitä tiedostoja.
 
 Linkit
 ------
 
+:Matias:        Lyhyt maininta linkeistä, joita on Unixeissa kahdenlaista. On
+                kovia ja pehmeitä linkkejä. Pehmeät linkit, tai symboliset
+                linkit, ovat kuin Windowsissa pikakuvakkeet. Mutta vähän
+                monipuolisempia.
+:Ville:         Ai että voi työpöydälle laittaa linkin niin siihen voi mennä
+                suoraan?
+:Matias:        Eh. Nämä linkit käyttäytyvät kuin muut tiedostot, ja niitä voi
+                tehdä minne tahansa. Hyvin näppärä tapa saada samat tiedostot
+                näkymään eri paikoissa vaikkapa erinimisinä. Ja saman voi
+                tehdä myös hakemistoille!
+:Ville:         Kuulostaa hyödylliseltä.
+
+Ohjelman nimi on `ln`, ja se tekee oletuksena kovia linkkejä, jotka ovat vähän
+erilaisia kuin symboliset linkit. Keskitymme tässä nyt näihin jälkimmäisiin,
+eli pehmeisiin ja symbolisiin linkkeihin.
+
+::
+
+    $ ln -s lähde kohde
+
+:Matias:        Esimerkiksi näin
+
+                ::
+
+                    $ ls
+                    kissat
+                    $ ls kissat
+                    burgeri.txt  kalastaja  karvinen  siamilainen
+                    $ ln -s kissat katit
+                    $ ls katit
+                    burgeri.txt  kalastaja  karvinen  siamilainen
+:Ville:         Ja nytkö samat tiedostot on kahdessa paikassa ilman että niitä
+                kopioitiin?
+:Matias:        Ei! Sekä hakemisto `kissat` ja `katit` osoittavat samaan
+                hakemistoon, nimittäin `kissat`-hakemistoon. Kuitenkin saat
+                käsitellä kumpaakin hakemistoa omalla nimellään -- `katit`
+                näkyy systeemissä aivan omana hakemistonaan, ainakin mitä
+                nimeen tulee.
+
+Symbolisia linkkejä on helppoa tarkastella `ls -l` -listauksessa::
+
+    $ ls -l
+    lrwxrwxrwx 1 matias matias   6 Jul 16 17:23 katit -> kissat
+    drwxr-xr-x 2 matias matias  73 Jul 15 17:03 kissat
+
+Näemme, että `katit` on symbolinen linkki, joka osoittaa oikein nuolen kanssa
+kohti hakemistoa `kissat`.
