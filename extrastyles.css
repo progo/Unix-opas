@@ -14,7 +14,6 @@ h1 {
 }
 h2 {
     font-size: 1.25em;
-    color: gray;
 }
 
 .field-list p {
@@ -23,4 +22,30 @@ h2 {
 
 dt {
     font-weight: bold;
+}
+
+
+
+/* Colors */
+
+body {
+    background-color: #FFEA87;
+}
+
+/*** Code **/
+
+    /* Inline */
+    tt.literal {
+        background-color: #EBD361;
+    }
+
+    /* Block */
+    pre.literal-block {
+        background-color: inherit;
+        border-left: thick solid #EBD361;
+        padding-left: 5px;
+    }
+
+h2 {
+    color: gray;
 }
