@@ -117,11 +117,11 @@ Vasta kun olet lopettanut kirjailemisen ja ilmoittanut `sort`:lle, että nyt
 loppui teksti, niin `sort` lajittelee saamansa syötteen. Todellisuudessa
 muuntimet pyrkivät tekemään muunnostöitä riveittäin, mutta `sort` tietenkin
 joutuu odottamaan kaiken tiedon. Eihän sitä voi lajitella yhtä riviä
-kerrallaan!
+ilman, että sitä vertailee muiden kanssa!
 
 `cat` on idioottivarma muuntaja, joka ei tee mitään. Lähettää vain takaisin
 kaiken saamansa. Se on vesiputkien termistössä tavallinen putki ilman
-muuntimia. Ei siis mikään muunninkaan.
+muuntimia. Ei siis varsinaisesti mikään muunninkaan.
 
 Muuntimia voit yhdistellä mielinmäärin::
 
@@ -175,6 +175,8 @@ kakkosgrepin aikana haluamme *lisätä* katsomislistalle toisen jakson, joten
 käytämme tuplaväkäsiä.
 
 Kun tietovirtaa on näin ohjattu tiedostoon, ei se tulosta näytölle mitään.
+Voimme siis päätellä, että lopullinen "allas" on aina joko jokin tiedosto tai
+terminaali itse.
 
 Uusia muuntimia
 ---------------
@@ -185,11 +187,175 @@ korvaustöitä: tekstit muuntaa toiseen muotoon. Oikein etevä pystyy
 suorittamaan esimerkiksi laskutoimituksiakin tiettyjen palstojen kanssa.
 Näistä muodostuu Unix-filosofia ja palikoiden kasattavuus.
 
+Näistä emme käy mitään syvällisiä katsauksia läpi, koska nämä ovat valtavan
+monipuolisia ja pikkujuttuja täynnä olevia sovelmia. Mainituista ohjelmista
+ainakin `sed` ja `awk` ovat ansainneet omia opuksiaan, joissa sivuja on
+sadoittain. Esittelen muutaman tyypillisen käyttökohteen kullekin näistä
+kolmesta ohjelmasta. Loput saat itse miettiä internetin ja manpagejen avulla.
+
 tr
 ..
+
+Pieni ja sievä ohjelma `tr` (transformer) muuntaa kirjainjoukkoja yhdestä
+joukosta toiseen. Manuaalisivulla on lyhyt, mutta sitäkin selvempi kuvaus
+kaikesta, mitä tämä tunnistaa oletuksena. Muunnin ottaa vastaan
+kirjainjoukkoja, ja muuntaa ne vastaaviksi kirjaimiksi toisesta joukosta.
+Esimerkki valaiskoon::
+
+    $ echo "Hei maailma" | tr 'a-z' 'A-Z'
+    HEI MAAILMA
+
+Muunnamme `tr`:n avulla kaikki kirjaimet joukosta `a-z` joukkoon `A-Z`, eli
+toisin sanoen isoiksi kirjaimiksi. `tr` tunnistaa joitain useinkäytettyjä
+joukkoja entuudestaan, joten niitä kannattaa käyttää selvyyden vuoksi aina kun
+mahdollista::
+
+    $ echo "tililläni on 12,29 euroa" | tr '[:digit:]' 'x'
+    tililläni on xx,xx euroa
 
 sed
 ...
 
+Ensimmäinen isompi editorimme on armas `sed`, eli *stream editor*. "Stream" on
+tässä yhteydessä nyt tietovirtaa, kuten olemme puhuneet kappaleessa. Hauska
+ohjelma, jolla on julmetusti käyttöä mitä mielenkiintoisimmissa kohteissa.
+Tavallisesti `sed`:iä käytetään simppeleihin *search-replace*-operaatioihin::
+
+    $ echo "tililläni on 12,29 euroa" | sed -e "s/on/ei ole/g"
+    tililläni ei ole 12,29 euroa
+
+Ideana on siis, että kullekin syötevirran riville sovelletaan joukkoa
+erilaisia tekstinkäsittelykomentoja. Nämä komennot ovat peräisin vanhasta
+editorista `ed`, mutta niitä on vähän paranneltu tähän käyttöön sopivaksi!
+Näitä komentoja ovat klassinen `s`, eli *substitute*. Sille annetaan ensin
+haettavat merkkijonot, ja sitten sille annetaan korvaava teksti. Erotinmerkit
+tulee muistaa laittaa mukaan! Viimeinen `g`-kirjain ilmaisee, että haluamme
+hakea rivin kaikki ilmentymät sanasta "on": ilman geetä vain ensimmäinen
+on-sana korvataan.
+
+`sed` noin yleisesti ottaen osaa tehdä kaiken saman, mitä `tr` :kin::
+
+    $ echo "tililläni on 12,29 euroa" | sed -e "s/[[:digit:]]/x/g"   
+    tililläni on xx,xx euroa
+
+Koska `sed` käyttää monipuolisempia säännöllisiä lausekkeita, on merkkiryhmien
+käyttäminen hieman erilaista kuin `tr`-esimerkissämme.
+
+`sed` osaa myös jäljitellä `grep`:in toimintaa. Ja myös käänteisen grepin.
+Esimerkiksi voimme jättää Shempin jaksot pois Stooges-listauksestamme::
+
+    $ sed -e "/Shemp/d" Stooges.txt
+    Vuosi   Jakso                   Kuka?
+    --------------------------------------------
+    1940    From Nurse To Worse     Curly
+    1958    Quiz Whiz               Joe
+    1935    Uncivil Warriors        Curly
+    1946    Monkey Businessmen      Curly
+    1942    Three Smart Saps        Curly
+
+Sama efekti siis kuin `grep -v`:n kanssa.
+
+Kun emme ole tekemässä search-replacea (eli substituutiota), niin olemme
+käyttämässä yllä esiteltyä muotoa `/pattern/komento`. Tässä tapauksessa
+komento on `d`, eli *delete*. Peruskäyttöä ajatellen `sed` on parasta jättää
+tähän substituointiin. Sopivia käyttökohteita toki löytyy vaikka millä
+mitalla, mutta erikoisaiheet sopinee luettavaksi omista kirjoistaan. 
+
 awk
 ...
+
+Hyvin hyödyllinen ohjelma on `awk`, kun käsittelemme taulukkomuotoista dataa.
+Tämä `awk` kun ottaa syötteensä riveinä, ja jakaa ne soluiksi. Näillä soluilla
+voidaan tehdä sitten hyvin paljon erilaisia operaatioita: Awk on hyvin
+monipuolinen kieli, joka on käytännössä kevennetty Perl, hyvin C-sukuinen
+kieli.
+
+Käyttämämme esimerkkitiedosto `Stooges.txt` on toisaalta `awk`:lle hankalaa
+syötettä, koska jaksojen nimet menevät sekaisin helposti. Mutta jos haluamme
+kaivaa vaikkapa vuosilukujen listauksen, niin `awk` on kätevä::
+
+    $ awk '{print $1}' Stooges.txt  |tail -n 4
+    1950
+    1948
+    1947
+    1942
+
+`awk`:ssa kenttiin viitataan `$numero` -merkinnällä. "Nollas" kenttä on koko
+rivi sellaisenaan. Viimeinen kenttä rivillään on `$NF`. Voisimme katsoa siten
+Stoogesien vaihtelevat nimet tällä tavalla::
+
+    $ tail -n +3 Stooges.txt|awk '{print $NF}'
+    Shemp
+    Curly
+    Joe
+    Curly
+    Curly
+    Shemp
+    Shemp
+    Shemp
+    Curly
+
+Tärkein `awk`-komento on luonnollisesti `print`. Helppoa on myös yhdistellä
+kenttiä ja muotoilla tulostusta kuten haluaa::
+
+    $ tail -n +3 Stooges.txt|awk '{print $1 ", " $NF}'
+    1950, Shemp
+    1940, Curly
+    1958, Joe
+    1935, Curly
+    1946, Curly
+    1950, Shemp
+    1948, Shemp
+    1947, Shemp
+    1942, Curly
+
+Awk on peto kaikenlaisen CSV-muotoillun datan kanssa. Se osaa myös laskea
+asioita yhteen, joten se on hyvin sulava työkalu mihin tahansa, missä on
+selkeästi määriteltyä taulukko- tai listatavaraa. Oletetaan seuraavanlaista
+yksinkertaista CSV-dataa::
+
+    $ cat data.csv
+    2008, 45, -120
+    2009, 80, -25
+    2010, 100, -10
+    2011, 120, -15
+
+Awk oletuksena halkoo rivit tyhjien merkkien (välit ja tabit) perusteella,
+mutta voimme asettaa kenttäerottimen `-F` -optiolla. Ensin vähän lämmitellään
+kaivamalla pelkät vuosiluvut esille tiedostosta::
+
+    $ awk -F, '{print $1}' data.csv
+    2008
+    2009
+    2010
+    2011
+
+Huomaa pilku option perässä. Se on se erottimemme! Awk osaa laskea lukuja
+yhteen::
+
+    $ awk -F, '{print $1 $2 $3 " = " ($2+$3)}' data.csv
+    2008 45 -120 = -75
+    2009 80 -25 = 55
+    2010 100 -10 = 90
+    2011 120 -15 = 105
+
+Nyt tulostetaan kentät 1, 2 ja 3. Sitten tulostetaan vähän tekstiä ja tehdään
+laskusuoritus, jonka tulos myös tulostetaan. On se automaattinen
+tietojenkäsittely hienoa.
+
+Awk:n alla on vahva koneisto, joka voi kerätä tietoa ja koostaa siitä loppuun
+vaikkapa summan::
+
+    $ awk -F, '{saldo += ($2+$3)} END{print saldo}' data.csv
+    175
+
+Taikasanan END alle voi kääriä tehtäviä, jotka awk suorittaa aivan lopuksi.
+Nyt laskemme kustakin rivistä kentät 2 ja 3 yhteen, ja lisäämme ne muuttujaan
+`saldo`. Lopussa tulostamme tämän muuttujan sisällön näkyville. Käyttötapoja
+on rajattomasti. Awk tukee myös samanlaista BEGIN-lohkoa.
+
+Awkin kanssa kirjoitellessa kannattaa muistaa selkeyskin. Pidemmät ohjelmat
+voi kirjoittaa omaan tiedostoonsa, ja ne voi syöttää awkille option `-f`
+kanssa. Awk osaa niin paljon, ja se on niin helppokäyttöinenkin. Tästä
+aiheesta voisi pauhata vaikka kuinka pitkään. Mutta musiikki on lopuillaan ja
+yöksi kääntymään päin. Jatkamme uusilla aiheilla tuotapikaa.
