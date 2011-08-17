@@ -21,6 +21,7 @@ Thinking in Text
 .. include:: putket.rst
 .. TODO pakkaaminen/purkaminen: tar, gzip, bzip2, unzip
 .. työnohjaus fg,bg,C-z
+.. include:: komentorivi.rst
 .. include:: screen.rst
 .. include:: editor-intro.rst
 .. include:: nano.rst
