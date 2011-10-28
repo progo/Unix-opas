@@ -19,9 +19,10 @@ Thinking in Text
 .. include:: 03-pikkuohjelmia.rst
 .. include:: man.rst
 .. include:: putket.rst
-.. pakkaaminen/purkaminen: tar, gzip, bzip2, unzip
-.. työnohjaus fg,bg,C-z
 .. include:: komentorivi.rst
+.. työnohjaus fg,bg,C-z
+.. include:: paketit.rst
+.. include:: haku.rst
 .. include:: screen.rst
 .. include:: editor-intro.rst
 .. include:: nano.rst
@@ -32,8 +33,6 @@ To be continued
 
 Käsittelemättä on ainakin seuraavia ideoita:
 
-- find
-- screen
 - make
 - vim
 - emacs
