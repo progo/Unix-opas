@@ -5,7 +5,7 @@ OUTPUT=fieldtest
 # HTML
 #######################
 
-DEFAULTSTYLE=/usr/share/doc/docutils-0.7/html/html4css1.css
+DEFAULTSTYLE=/usr/lib/python2.6/site-packages/docutils/writers/html4css1/html4css1.css
 EXTRASTYLES=extrastyles.css
 
 html: $(OUTPUT).html
