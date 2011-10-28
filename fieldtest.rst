@@ -19,7 +19,7 @@ Thinking in Text
 .. include:: 03-pikkuohjelmia.rst
 .. include:: man.rst
 .. include:: putket.rst
-.. TODO pakkaaminen/purkaminen: tar, gzip, bzip2, unzip
+.. pakkaaminen/purkaminen: tar, gzip, bzip2, unzip
 .. työnohjaus fg,bg,C-z
 .. include:: komentorivi.rst
 .. include:: screen.rst
