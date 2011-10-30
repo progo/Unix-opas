@@ -39,6 +39,11 @@ body {
         background-color: #EBD361;
     }
 
+    /* not for links */
+    a tt.literal {
+        background-color: inherit;
+    }
+
     /* Block */
     pre.literal-block {
         background-color: inherit;
