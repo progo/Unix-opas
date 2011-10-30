@@ -20,9 +20,10 @@ Thinking in Text
 .. include:: man.rst
 .. include:: putket.rst
 .. include:: komentorivi.rst
-.. työnohjaus fg,bg,C-z
 .. include:: paketit.rst
 .. include:: haku.rst
+.. include:: toisto.rst
+.. include:: ohjaus.rst
 .. include:: screen.rst
 .. include:: editor-intro.rst
 .. include:: nano.rst

@@ -40,6 +40,10 @@ Unix-palvelimeen on samanlaista etäkäyttöä kuin vaikka Windowsien etätyöp�
 ajaminen. Onneksi puhtaasta tekstistä koostuvien konsoliohjelmien ajaminen on
 sujuvaa hitaammallakin nettiyhteydellä.
 
+Jos olet itse Linux-ympäristössä, kuten Ubuntussa, ei sinun tietenkään
+tarvitse ottaa ssh-yhteyksiä minnekään, vaan voit avata Terminaalin tai
+vastaavan, jolla voit tutustua komentorivin saloihin yhtä hyvin kuin etänäkin.
+
 Hei Unix?
 ---------
 
