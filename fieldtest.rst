@@ -28,6 +28,7 @@ Thinking in Text
 .. include:: editor-intro.rst
 .. include:: nano.rst
 .. include:: vi.rst
+.. viimeisenä voisi olla syvempi kappale tapausesimerkkejä komentorivistä
 
 To be continued
 ===============
@@ -35,5 +36,5 @@ To be continued
 Käsittelemättä on ainakin seuraavia ideoita:
 
 - make
-- vim
-- emacs
+- vim (?)
+- emacs (?)

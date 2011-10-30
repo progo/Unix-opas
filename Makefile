@@ -48,3 +48,7 @@ wordcount:
 
 todos:
 	@grep --color=auto TODO *rst
+
+# progon oma apu.
+upload:
+	scp -r fieldtest.html pics/ viuhka.fi:pubic_html/unixopas/
