@@ -1,2 +1,9 @@
 Suomenkielinen Unix/Linux -komentoriviopas pääasiassa Viuhka.fi-käyttöön,
 mutta miksei muuallekin.
+
+Vaatii pythonin docutilsit, joiden mukana pitäisi olla `rst2html.py`. Siten
+voit luoda oman version HTML:stä, vaikka puhdas reST on aika selvälukuista.
+
+Uploadailen luultavasti HTML-versiota aluksi osoitteeseen
+http://havu.viuhka.fi/unixopas/, mutta myöhemmin se kai löytää paikkansa
+jostain hienommasta paikasta.
