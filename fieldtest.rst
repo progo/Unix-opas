@@ -36,5 +36,6 @@ To be continued
 Käsittelemättä on ainakin seuraavia ideoita:
 
 - make
+- pine/alpine
 - vim (?)
 - emacs (?)
