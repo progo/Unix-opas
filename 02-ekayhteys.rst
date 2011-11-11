@@ -35,10 +35,12 @@ tietokoneiden kanssa.
                 joissa tarvitaan, on sitten interaktiiviset valikot sun muut.
 
 Kaikilla käytännön tasoilla tarkasteltuna `ssh`-asiakasohjelmalla (esimerkiksi
-PuTTy tai Linuxien komentoriviltä ajettava `ssh`) yhteyden ottaminen
-Unix-palvelimeen on samanlaista etäkäyttöä kuin vaikka Windowsien etätyöpöydän
-ajaminen. Onneksi puhtaasta tekstistä koostuvien konsoliohjelmien ajaminen on
-sujuvaa hitaammallakin nettiyhteydellä.
+Windows-ympäristössä PuTTy ja OpenSSH Linux/Unix-maailmoissa; komentoriviltä
+ajettava `ssh`) yhteyden ottaminen Unix-palvelimeen on samanlaista etäkäyttöä
+kuin vaikka Windowsien etätyöpöydän ajaminen. Onneksi puhtaasta tekstistä
+koostuvien konsoliohjelmien ajaminen on sujuvaa hitaammallakin
+nettiyhteydellä, sekä rajoitetummistakin ympäristöistä, kuten älypuhelimista
+onnistuu etäkäyttö.
 
 Jos olet itse Linux-ympäristössä, kuten Ubuntussa, ei sinun tietenkään
 tarvitse ottaa ssh-yhteyksiä minnekään, vaan voit avata Terminaalin tai
