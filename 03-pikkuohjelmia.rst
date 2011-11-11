@@ -150,10 +150,8 @@ Näistä viimeistä on helppo käyttää tilanteissa, joissa tiedostojen täytyy
 oikein muotoiltuja. Monesti on annettu esimerkiksi 80 merkin rivinpituusraja.
 Näin helppoa se on::
 
-     $ wc -w foo.txt bar.txt 
-      5 foo.txt
-      1 bar.txt
-      6 total
+     $ wc -L foo.txt
+     50 foo.txt
 
 ---------
 
