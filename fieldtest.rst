@@ -28,6 +28,7 @@ Thinking in Text
 .. include:: editor-intro.rst
 .. include:: nano.rst
 .. include:: vi.rst
+.. include:: koodikaluja.rst
 .. viimeisenä voisi olla syvempi kappale tapausesimerkkejä komentorivistä
 
 To be continued
@@ -35,7 +36,7 @@ To be continued
 
 Käsittelemättä on ainakin seuraavia ideoita:
 
-- make
 - pine/alpine
 - vim (?)
 - emacs (?)
+- rootin ja muiden käyttäjien ero.
